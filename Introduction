@@ -1,1 +1,3 @@
-Hue
+Hue is an open source web-based interface for making it easier to use Apache Hadoop. It features a file browser for HDFS,
+an Oozie Application for creating workflows, coordinators and bundles, a job designer/browser for MapReduce, Hive, 
+Impala, Spark and Pig editors, search with Solr, a SDK and more.
