@@ -1,1 +1,83 @@
-hue install
+Pre-requisites to install hue..
+
+before installing hue... need to update with following..
+
+yum install ant -y
+yum install asciidoc -y
+yum install cyrus-sasl-devel -y
+yum install cyrus-sasl-gssapi -y
+yum install gcc -y
+yum install gcc-c++ -y
+yum install krb5-devel -y
+yum install libtidy -y
+yum install libxml2-devel -y
+yum install libxslt-devel -y
+yum install make -y
+yum install mvn -y
+yum install mysql -y
+yum install mysql-devel -y
+yum install openldap-devel -y
+yum install python-devel -y
+yum install sqlite-devel -y
+yum install openssl-devel -y
+yum install gmp-devel -y
+
+==========================================================
+
+
+
+http://gethue.com/hue-3-9-with-all-its-improvements-is-out/
+
+Step1:
+======
+wget https://dl.dropboxusercontent.com/u/730827/hue/releases/3.9.0/hue-3.9.0.tgz
+tar -zxvf hue-3.9.0.tgz
+cd hue-3.9.0
+make apps
+
+https://github.com/cloudera/hue/tree/master/apps/spark/java
+
+cd apps/spark/java
+mvn -DskipTests clean package
+
+env LIVY_SERVER_JAVA_OPTS="-Dlivy.server.session.factory=yarn" CLASSPATH=`hadoop classpath` ./bin/livy-server &
+
+env \
+  LIVY_SERVER_JAVA_OPTS="-Dlivy.server.session.factory=yarn" \
+  CLASSPATH=`hadoop classpath` \
+  ./bin/livy-server &
+
+
+cd $HUE_HOME
+build/env/bin/hue runserver &
+
+https://github.com/cloudera/hue/tree/release-3.9.0
+
+https://github.com/cloudera/hue/tree/master/apps/spark/java
+
+git clone https://github.com/cloudera/hue.git
+cd hue
+make apps
+build/env/bin/hue runserver &
+
+start server:
+=============
+env LIVY_SERVER_JAVA_OPTS="-Dlivy.server.session.factory=yarn" CLASSPATH=`hadoop classpath` livy-server &
+
+hue runserver &
+
+stop server:
+=============
+
+pkill -f runserver
+
+pkill -f com.cloudera.hue.livy.server.Main
+
+
+
+
+
+
+
+
+
