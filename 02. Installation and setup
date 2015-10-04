@@ -72,12 +72,3 @@ stop server:
 pkill -f runserver
 
 pkill -f com.cloudera.hue.livy.server.Main
-
-
-
-
-
-
-
-
-
